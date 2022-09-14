@@ -1,6 +1,6 @@
 # employee-tracker
 
-This is a business application for managing the roles, employeesm and departments within a company. 
+This is a business application for managing the roles, employeesm and departments within a company.
 
 Built with:
 Node.js
@@ -8,7 +8,6 @@ Inuirer
 MySQL
 Express.js
 JavaScript
-
 
 ## User Story
 
@@ -36,11 +35,12 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
-## Contributors: 
+## Contributors:
 
 Study Group:
 Susan, Jackson, Chris P., Sarah, Ricky, Aaron
 
 ## Links:
-GitHub repo: 
 
+GitHub repo:
+https://github.com/Smccarthy17/employee-tracker.git
