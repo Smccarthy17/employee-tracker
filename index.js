@@ -418,4 +418,97 @@ const mainMenu = [
     });
   }
 
+  function addRecord(content) {
+    if (content == "department") {
+      inquirer.prompt(questions.addDeparment).then((answers) => {
+        department.add(answers.newDepartment);
+        setTimeout(() => {
+          mainMenuPrompt();
+        }, 50);
+      });
+    }
+    if (content == "role") {
+      department.showAsArray();
+      inquirer.prompt(questions.addRole).then((answers) => {
+        role.add(answers.title, answers.salary, answers.id);
+        console.log("Complete!");
+        role.showAll();
+        setTimeout(() => {
+          mainMenuPrompt();
+        }, 50);
+      });
+    }
+    if (content == "employee") {
+      const newEmployee = { firstName: "", lastName: "", role: "", manager: "" };
+      inquirer.prompt(questions.addEmployee.askNames).then((answers) => {
+        newEmployee.firstName = answers.firstName;
+        newEmployee.lastName = answers.lastName;
+        role.showAll();
+        setTimeout(() => {
+          inquirer.prompt(questions.addEmployee.askRole).then((answers) => {
+            newEmployee.role = answers.role;
+            employee.showAll();
+            setTimeout(() => {
+              inquirer
+                .prompt(questions.addEmployee.askManager)
+                .then((answers) => {
+                  newEmployee.manager = answers.manager;
+                  employee.add(
+                    newEmployee.firstName,
+                    newEmployee.lastName,
+                    newEmployee.role,
+                    newEmployee.manager
+                  );
+                  employee.showAll();
+                  setTimeout(() => {
+                    mainMenuPrompt();
+                  }, 50);
+                });
+            }, 50);
+          });
+        }, 50);
+      });
+    }
+    if (content == "main") {
+      mainMenuPrompt();
+    }
+  }
   
+  function removeRecord() {
+    inquirer.prompt(questions.removeMenu).then((answers) => {
+      let remove = answers.remove;
+      if (remove === "exit") {
+        mainMenuPrompt();
+      }
+      if (remove === "role") {
+        role.showAll();
+        setTimeout(() => {
+          inquirer.prompt(questions.askId).then((answer) => {
+            role.remove(answer.id);
+            answers = {};
+            mainMenuPrompt();
+          });
+        }, 100);
+      }
+      if (remove === "department") {
+        department.showAll();
+        setTimeout(() => {
+          inquirer.prompt(questions.askId).then((answer) => {
+            department.remove(answer.id);
+            answers = {};
+            mainMenuPrompt();
+          });
+        }, 100);
+      }
+      if (remove === "employee") {
+        employee.showAll();
+        setTimeout(() => {
+          inquirer.prompt(questions.askId).then((answer) => {
+            employee.remove(answer.id);
+            answers = {};
+            mainMenuPrompt();
+          });
+        }, 100);
+      }
+    });
+  } 
