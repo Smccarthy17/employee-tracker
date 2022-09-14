@@ -366,4 +366,56 @@ const mainMenu = [
     ],
   };   
 
+  function mainMenuPrompt(questions) {
+    answers = "";
+    inquirer.prompt(questions).then((answers) => {
+  
+      let view = answers.view;
+      let remove = answers.remove;
+      let add = answers.add;
+      let update = answers.update;
+      if (view) {
+        if (answers.empView) {
+          if (answers.empView === "all") {
+            employee.showAll();
+            answers = "";
+            setTimeout(mainMenuPrompt, 1000);
+          }
+          if (answers.empView === "manager") {
+            employee.showByManager();
+            answers = "";
+            setTimeout(mainMenuPrompt, 1000);
+          }
+        }
+        if (view === "Departments") {
+          department.showAll();
+          answers = "";
+          setTimeout(mainMenuPrompt, 1000);
+        }
+        if (view === "Roles") {
+          role.showAll();
+          answers = "";
+          setTimeout(mainMenuPrompt, 1000);
+        }
+        if (view === "Return to main menu") {
+          answers = "";
+          setTimeout(mainMenuPrompt, 1000);
+        }
+      }
+      if (remove == true) {
+        removeRecord();
+      }
+      if (remove == false) {
+        answers = {};
+        mainMenuPrompt();
+      }
+      if (add) {
+        addRecord(add);
+      }
+      if (update) {
+        updateRecord(update);
+      }
+    });
+  }
+
   
