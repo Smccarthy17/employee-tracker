@@ -512,3 +512,109 @@ const mainMenu = [
       }
     });
   } 
+
+  function updateRecord(category) {
+    if (category === "main") {
+      answers = {};
+      mainMenuPrompt();
+    }
+    if (category === "department") {
+      department.showAll();
+      let newId = "";
+      let newName = "";
+      setTimeout(() => {
+        inquirer.prompt(questions.updateRecord.recordId).then((answers) => {
+          newId = answers.id;
+          inquirer.prompt(questions.updateRecord.department).then((answers) => {
+            newName = answers.newName;
+            department.update(newId, newName);
+            setTimeout(() => {
+              department.showAll(), 150;
+            });
+            setTimeout(() => {
+              answers = {};
+              mainMenuPrompt();
+            }, 250);
+          });
+        });
+      }, 150);
+    }
+    if (category === "role") {
+      role.showAll();
+      let roleId = "";
+      setTimeout(() => {
+        inquirer.prompt(questions.updateRecord.recordId).then((answers) => {
+          roleId = answers.id;
+          inquirer.prompt(questions.updateRecord.role).then((answers) => {
+            if (answers.role === "main") {
+              answers = {};
+              mainMenuPrompt();
+            }
+            if (answers.newSalary) {
+              role.updateSalary(roleId, answers.newSalary);
+              setTimeout(() => {
+                role.showAll();
+              }, 150);
+              setTimeout(() => {
+                mainMenuPrompt();
+              }, 250);
+            }
+            if (answers.newDepartment) {
+              role.updateDepartment(roleId, answers.newDepartment);
+              setTimeout(() => {
+                role.showAll();
+              }, 150);
+              setTimeout(() => {
+                mainMenuPrompt();
+              }, 250);
+            }
+            if (answers.newTitle) {
+              role.updateTitle(roleId, answers.newTitle);
+              setTimeout(() => {
+                role.showAll();
+              }, 150);
+              setTimeout(() => {
+                mainMenuPrompt();
+              }, 250);
+            }
+          });
+        });
+      }, 50);
+    }
+    if (category === "employee") {
+      employee.showAll();
+      let employeeId = "";
+      setTimeout(() => {
+        inquirer.prompt(questions.updateRecord.recordId).then((answers) => {
+          employeeId = answers.id;
+          inquirer.prompt(questions.updateRecord.employee).then((answers) => {
+            if (answers.employee === "main") {
+              answers = {};
+              mainMenuPrompt();
+            }
+            if (answers.newRole) {
+              employee.updateRole(employeeId, answers.newSRole);
+              setTimeout(() => {
+                employee.showAll();
+              }, 150);
+              setTimeout(() => {
+                mainMenuPrompt();
+              }, 250);
+            }
+            if (answers.newManager) {
+              employee.updateManager(employeeId, answers.newManager);
+              setTimeout(() => {
+                employee.showAll();
+              }, 150);
+              setTimeout(() => {
+                mainMenuPrompt();
+              }, 250);
+            }
+          });
+        });
+      }, 50);
+    }
+  };
+
+
+mainMenuPrompt();
