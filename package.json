@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JakMcCarthy/Employee-Tracker.git"
+    "url": "git+https://github.com/Smccarthy17/employee-tracker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JakMcCarthy/Employee-Tracker/issues"
+    "url": "https://github.com/Smccarthy17/employee-tracker.git/issues"
   },
-  "homepage": "https://github.com/JakMcCarthy/Employee-Tracker#readme",
+  "homepage": "https://github.com/Smccarthy17/employee-tracker.git#readme",
   "dependencies": {
     "console.table": "^0.10.0",
     "inquirer": "^8.2.4",
